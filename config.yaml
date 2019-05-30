@@ -1,0 +1,51 @@
+#BLUEIRIS-GEOFENCE config file
+
+blueiris:
+    # Your Blueiris Server IP
+    host: 192.168.x.x
+    # Your Blueiris Username
+    username: myuser
+    # Your Blueiris Password
+    password: mypassword
+    # Your home Position (latitude-longitude)
+    home_latitude: 41.894687
+    home_longitude: 12.483066
+    # Set Inside perform action True to enable False to disable
+    inside:
+      #enable = True set profile name example "At Home"
+      set_profile:
+        enable: True
+        profile_name: "At Home"
+      #enable = True set schedule name example "Night"
+      set_schedule:
+        enable: True
+        schedule_name: Night
+      #enable = True set signal accept signa_colour: "red,green,yellow"      
+      set_signal:
+        enable: False
+        signal_colour: none
+      #enable = True start trigger camera accept camera_name example "cam1"      
+      trigger:
+        enable: False
+        camera_name: none
+    outside:
+      set_profile:
+        enable: True
+        profile_name: Out Home
+      set_schedule:
+        enable: True
+        schedule_name: Default
+      set_signal:
+        enable: False
+        signal_colour: none
+      trigger:
+        enable: False
+        camera_name: none
+
+life360:
+    #life360 auth code don't change this 
+    token: cFJFcXVnYWJSZXRyZTRFc3RldGhlcnVmcmVQdW1hbUV4dWNyRUh1YzptM2ZydXBSZXRSZXN3ZXJFQ2hBUHJFOTZxYWtFZHI0Vg==
+    # Your Life360 Username
+    username: myusername 
+    # Your Life360 Password
+    password: mypassword
