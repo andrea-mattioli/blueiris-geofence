@@ -3,6 +3,7 @@ import yaml
 class BlueConfig:
     def __init__(self, raw):
         self.__dict__.update(raw)
+        self.proto = raw['proto']
         self.host = raw['host']
         self.username = raw['username']
         self.password = raw['password']

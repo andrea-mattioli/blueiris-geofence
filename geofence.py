@@ -6,9 +6,10 @@ from config import Config
 
 config = Config(yaml.safe_load(open('./config.yaml')))
 distance = 0
+bi = BlueIris(config.blueiris.proto, config.blueiris.host, config.blueiris.username, config.blueiris.password, False)
 
 def inside():
-    bi = BlueIris(config.blueiris.host, config.blueiris.username, config.blueiris.password, False)
+    global bi
     if config.blueiris.inside.set_profile['enable']:
        try:
           profile_id = bi.profiles_list.index(config.blueiris.inside.set_profile['profile_name'])
@@ -24,7 +25,7 @@ def inside():
     bi.logout()
 
 def outside():
-    bi = BlueIris(config.blueiris.host, config.blueiris.username, config.blueiris.password, False)
+    global bi
     if config.blueiris.outside.set_profile['enable']:
        try:
           profile_id = bi.profiles_list.index(config.blueiris.outside.set_profile['profile_name'])

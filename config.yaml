@@ -1,6 +1,8 @@
 #BLUEIRIS-GEOFENCE config file
 
 blueiris:
+    # Your Blueiris Server Proto http/https
+    proto: https
     # Your Blueiris Server IP
     host: 192.168.x.x
     # Your Blueiris Username

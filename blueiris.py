@@ -10,18 +10,20 @@ class BlueIris:
 
 
 
-    def __init__(self, host, user, password, debug=False):
+    def __init__(self, proto, host, user, password, debug=False):
 
         self.host = host
 
         self.user = user
 
         self.password = password
+        
+        self.proto = proto
 
         self.debug = debug
 
-        self.url = "https://"+host+"/json"
-
+        self.url = proto+"://"+host+"/json"
+        
         r = requests.post(self.url, data=json.dumps({"cmd":"login"}), verify=False)
 
         if r.status_code != 200:
