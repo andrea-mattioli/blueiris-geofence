@@ -48,3 +48,6 @@ WantedBy=multi-user.target<br>
 - systemctl enable blueiris-geofence.service
 - systemctl start blueiris-geofence.service
 - systemctl stus blueiris-geofence.service
+
+### Windows
+WORK IN PROGRESS....
