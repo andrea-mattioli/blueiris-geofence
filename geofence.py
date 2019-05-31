@@ -1,4 +1,5 @@
 from life360 import life360
+from time import sleep
 from math import sin, cos, sqrt, atan2, radians
 import requests, json, hashlib, sys, argparse, yaml
 from blueiris import BlueIris
@@ -6,10 +7,9 @@ from config import Config
 
 config = Config(yaml.safe_load(open('./config.yaml')))
 distance = 0
-bi = BlueIris(config.blueiris.proto, config.blueiris.host, config.blueiris.username, config.blueiris.password, False)
 
 def inside():
-    global bi
+    bi = BlueIris(config.blueiris.proto, config.blueiris.host, config.blueiris.username, config.blueiris.password, False)
     if config.blueiris.inside.set_profile['enable']:
        try:
           profile_id = bi.profiles_list.index(config.blueiris.inside.set_profile['profile_name'])
@@ -25,7 +25,7 @@ def inside():
     bi.logout()
 
 def outside():
-    global bi
+    bi = BlueIris(config.blueiris.proto, config.blueiris.host, config.blueiris.username, config.blueiris.password, False)
     if config.blueiris.outside.set_profile['enable']:
        try:
           profile_id = bi.profiles_list.index(config.blueiris.outside.set_profile['profile_name'])
@@ -42,22 +42,17 @@ def outside():
 
 def geofence (lat,lon):
     global config
-    # Raggio della terra in m
     R = 6356988
-    #
     dlon = radians(lon) - radians(config.blueiris.home_longitude)
     dlat = radians(lat) - radians(config.blueiris.home_latitude)
-    #
     a = sin(dlat / 2)**2 + cos(radians(config.blueiris.home_latitude)) * cos(radians(lat)) * sin(dlon / 2)**2
     c = 2 * atan2(sqrt(a), sqrt(1 - a))
     distance = R * c
     return distance
 
-if __name__ == "__main__":
-
+def get_device():
     api = life360(authorization_token=config.life360.token, username=config.life360.username, password=config.life360.password)
     if api.authenticate():
-
         circles =  api.get_circles()
         id = circles[0]['id']
         circle = api.get_circle(id)
@@ -72,5 +67,13 @@ if __name__ == "__main__":
            inside()
         else:
            outside()
+        return True
     else:
         print ("Error authenticating")
+        return False
+
+if __name__ == "__main__":
+  while True:
+     get_device()
+     sleep(20) 
+
