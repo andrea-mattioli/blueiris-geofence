@@ -9,6 +9,7 @@ class BlueConfig:
         self.password = raw['password']
         self.home_latitude = raw['home_latitude']
         self.home_longitude = raw['home_longitude']
+        self.distance = raw['distance']
 
 class LifeConfig:
     def __init__(self, raw):

@@ -61,7 +61,7 @@ def get_device():
             lat=float(m['location']['latitude'])
             lon=float(m['location']['longitude'])
             distance=geofence(lat, lon)
-            if distance <= 100:
+            if distance <= config.blueiris.distance:
               inside_list.append(True)
         if inside_list:
            inside()

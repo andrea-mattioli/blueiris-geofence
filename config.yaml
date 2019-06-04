@@ -12,6 +12,8 @@ blueiris:
     # Your home Position (latitude-longitude)
     home_latitude: 41.894687
     home_longitude: 12.483066
+    #Geofence Distance in meters (100-200 recommended)
+    distance: 200
     # Set Inside perform action True to enable False to disable
     inside:
       #enable = True set profile name example "At Home"
